@@ -22,7 +22,7 @@ const LoginView: React.FC = () => {
          onChangeText={setEmail}
         
       /></View>
-       <Text nativeID="formLabel">PASSWORD</Text>
+       
        <CustomTextInput 
          placeholder="PASSWORD"
          value={password}

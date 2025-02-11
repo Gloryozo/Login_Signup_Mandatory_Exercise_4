@@ -13,25 +13,22 @@ export default function SignupView() {
     <View style={styles.container}>
        <Text style={styles.headText}>CREATE ACCOUNT</Text>
      
-      <Text nativeID="formLabel">FULL NAME</Text>
       <CustomTextInput 
          placeholder="FULL NAME"
          value={fullName}
          onChangeText={setFullName}
       />
-      <Text nativeID="formLabel">EMAIL</Text>
       <CustomTextInput 
          placeholder="EMAIL"
          value={email}
          onChangeText={setEmail}
       />
-       <Text nativeID="formLabel">PASSWORD</Text>
+       
        <CustomTextInput 
          placeholder="PASSWORD"
          value={password}
          onChangeText={setPassword}
       />
-      <Text nativeID="formLabel">EMAIL</Text>
       <CustomTextInput 
          placeholder="CONFIRM PASSWORD"
          value={password}
