@@ -94,6 +94,8 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     fontSize: 16,
+    // to make the text input bold
+    fontWeight: 'bold',
     color: '#1a1a1a',
     paddingHorizontal: 44, // Space for icon + padding
     paddingVertical: 16,
