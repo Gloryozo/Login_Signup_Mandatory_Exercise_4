@@ -1,79 +1,86 @@
-import { View, Text, StyleSheet, Button, Alert, TouchableOpacity } from 'react-native'
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import CustomTextInput from './CustomTextInput';
+import React from 'react';
 import { useState } from 'react';
-import React from 'react'
-import { useNavigation, NavigationProp } from '@react-navigation/native';
+import Button from './Botton';
 
-const LoginView: React.FC = () => {
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const navigation = useNavigation<NavigationProp<any>>();
-  
+interface LoginViewProps {
+  onSwitchToSignup: () => void;
+}
+
+const LoginView = ({ onSwitchToSignup }: LoginViewProps) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
     <View style={styles.container}>
-      <Text style={styles.headText}>LOGIN</Text>
-       <Text>Please sign in to continue</Text>
-     <View>
+      <Text style={styles.title}>Login</Text>
+      <Text style={styles.subtitle}>Please sign in to continue</Text>
+
       <CustomTextInput 
-         icon="envelope"
-         placeholder="EMAIL"
-         value={email}
-         onChangeText={setEmail}
-        
-      /></View>
-       
-       <CustomTextInput 
-         placeholder="PASSWORD"
-         value={password}
-         onChangeText={setPassword}
+        label="Email"
+        icon="envelope"
+        value={email}
+        onChangeText={setEmail}
       />
-       <View style={styles.button}>
-         <Button
-            title="Login"
-            color="rgb(203, 182, 23)"
-            onPress={() => Alert.alert('Log in Button Clicked')}
-           />
-       </View>
-       <TouchableOpacity onPress={() => navigation.navigate('Signup')}style={{ flexDirection: 'row' }}>
-        <Text> Don't have an account? </Text>
-         <Text style={styles.linkText}> Sign up</Text> 
+
+      <CustomTextInput 
+        label="Password"
+        icon="lock"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
+
+      <Button 
+        title="Login"
+        onPress={() => Alert.alert('Login button clicked')}
+      />
+
+      <TouchableOpacity 
+        onPress={onSwitchToSignup}
+        style={styles.linkContainer}
+      >
+        <Text style={styles.linkText}>Don't have an account? </Text>
+        <Text style={[styles.linkText, styles.linkHighlight]}>Sign up</Text>
       </TouchableOpacity>
     </View>
-  )
-}
- 
+  );
+};
+
 const styles = StyleSheet.create({
-    button: {
-    alignItems: 'center',
-    padding: 10,
-    margin: 20,
-    width: 200,
-    borderRadius: 40,
-  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    padding: 24,
+    backgroundColor: 'white',
   },
-  headText: {
+  title: {
+    fontSize: 32,
     fontWeight: 'bold',
-    fontSize: 30,
-    margin: 20,
-    color: 'rgb(58, 58, 18)',
+    color: '#1a1a1a',
+    marginBottom: 8,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  subtitle: {
+    fontSize: 16,
+    color: '#666',
+    marginBottom: 40,
   },
   linkContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 20
+    marginTop: 24,
   },
   linkText: {
-    color: 'blue',
-    marginTop: 20,
-    flexDirection: 'row',
+    color: '#666',
+    fontSize: 14,
   },
-
- 
+  linkHighlight: {
+    color: 'orange',
+    fontWeight: '800',
+  },
 });
+
 export default LoginView;

@@ -1,15 +1,23 @@
 import LoginView from "@/components/LoginView";
 import SignupView from "@/components/SignupView";
-import { Text, View } from "react-native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-const Stack = createNativeStackNavigator();
+import { Text, View, StyleSheet } from "react-native";
+import { useState } from "react";
+import { Image } from "react-native";
 
 export default function Index() {
+
+  const [currentView, setCurrentView] = useState<'login' | 'signup'>('login');
+
   return (
-    <Stack.Navigator initialRouteName="Login">
-    <Stack.Screen name="Login" component={LoginView} />
-    <Stack.Screen name="Signup" component={SignupView} />
-  </Stack.Navigator>
-);
-}
+    <View style={{ flex: 1 }}>
+      <Image style={{ top: 20, right: 20 }} />
+      {currentView === 'login' ? (
+        <LoginView onSwitchToSignup={() => setCurrentView('signup')} />
+      ) : (
+        <SignupView onSwitchToLogin={() => setCurrentView('login')} />
+      )}
+    </View>
+  );
+};
+
+
