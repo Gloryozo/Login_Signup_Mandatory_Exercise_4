@@ -8,6 +8,8 @@ interface CustomTextInputProps {
   onChangeText: (text: string) => void;
   icon?: keyof typeof FontAwesome.glyphMap;
   secureTextEntry?: boolean;
+  keyboardType?: string;
+  autoCapitalize?: string;
 }
 
 const CustomTextInput = ({ 
